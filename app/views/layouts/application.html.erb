@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+  <title>Todos</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<header>
+<h1>"Enrique is so cool." &mdash;app view template</h1>
+<p>I am the header</p>
+<hr />
+</header>
+
+
+  <div class="container" ng-view>
+    <%= yield %>
+  </div>
+
+
+<footer>
+  <hr />
+  <p>I am the footer of the apps view template</p>
+</footer>
+</body>
+</html>

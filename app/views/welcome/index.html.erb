@@ -1,0 +1,15 @@
+<h2>"Agreed, he is the coolest." &mdash;Welcome View Template</h2>
+<div ng-controller="TodosCtrl">
+  <h1>Todos</h1>
+
+  <form ng-submit="addTodo($event)">
+    <input type="text" class="form-control" ng-model="nextTodo" placeholder="Add a todo...">
+  </form>
+
+  <ul class="todos">
+    <li ng-repeat="todo in todos | orderBy:predicate" ng-class="{complete: todo.complete}">
+      <input type="checkbox" ng-click="toggleComplete(todo)" ng-model="todo.complete"> {{ todo.title }}
+      <button ng-click="deleteTodo($event,todo,$index)">X</button>
+    </li>
+  </ul>
+</div>
