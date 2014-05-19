@@ -44,7 +44,7 @@ app.controller('TodosCtrl', function ($scope, Todo) {
   // Get the todos
   Todo.query(function(data){
     $scope.todos = data;
-    $scope.predicate = '-id';
+    // $scope.predicate = '-id';
   });
 
   // Add Todos
@@ -52,7 +52,8 @@ app.controller('TodosCtrl', function ($scope, Todo) {
     e.preventDefault();
     todo = new Todo({title: $scope.nextTodo});
     todo.$save();
-    $scope.todos.unshift(todo);
+    // prepends the new array to the old one, it's faster than unshift, which has to shift everything over.
+    $scope.todos = [todo].concat($scope.todos);
     $scope.nextTodo = "";
   };
 
@@ -63,10 +64,10 @@ app.controller('TodosCtrl', function ($scope, Todo) {
   };
 
   // Delete/Destroy Todo
-  $scope.deleteTodo = function (e, todo,index) {
-      e.preventDefault();
-      Todo.delete(todo);
-      $scope.todos.splice($index, 1);
+  $scope.deleteTodo = function (e, todo, index) {
+    e.preventDefault();
+    Todo.delete(todo);
+    $scope.todos.splice(index, 1);
   };
 
 });
